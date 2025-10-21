@@ -1,18 +1,28 @@
 # Instruções para executar o Bot de Coleta de Códigos de Barras localmente
 
-## Passo 1: Configurar o IP do servidor Docker
+## Passo 1: Configurar variáveis de ambiente de forma segura
 
-Antes de executar o bot, é necessário configurar o IP correto do servidor onde o Docker está rodando.
+Antes de executar o bot, é necessário configurar as variáveis de ambiente de forma segura, substituindo os valores padrão sensíveis:
 
-1. No arquivo `.env.local`, substitua `endereco_ip_do_servidor` pelo IP real do servidor Docker.
-   Exemplo: Se o IP do servidor for 192.168.1.100, altere:
-   ```
-   MYSQL_HOST=endereco_ip_do_servidor
-   ```
-   para:
-   ```
-   MYSQL_HOST=192.168.1.100
-   ```
+1. Crie um arquivo `.env.local` no diretório raiz (já está incluído no .gitignore)
+2. Configure as variáveis obrigatórias:
+
+```
+TELEGRAM_TOKEN=seu_token_real_aqui
+MYSQL_HOST=endereco_ip_do_servidor
+MYSQL_PORT=3306
+MYSQL_USER=seu_usuario
+MYSQL_PASSWORD=sua_senha_segura
+MYSQL_DATABASE=nome_do_banco
+```
+
+**IMPORTANTE**: Substitua `endereco_ip_do_servidor` pelo IP real do servidor Docker.
+Exemplo: Se o IP do servidor for 192.168.1.100, altere:
+```
+MYSQL_HOST=192.168.1.100
+```
+
+**ATENÇÃO**: Este projeto agora inclui validações de segurança que impedem a execução se variáveis críticas não estiverem configuradas.
 
 ## Passo 2: Testar a conexão com o banco de dados
 
@@ -32,8 +42,17 @@ Após confirmar que a conexão com o banco de dados está funcionando, execute o
 python ColetasCodBarraMultiplos.py
 ```
 
-## Observações:
+Ou utilize o script de inicialização para Windows:
 
-- O token do Telegram já está configurado no projeto, mas pode ser necessário atualizá-lo se o bot não funcionar corretamente
-- Certifique-se de que a porta 3306 no servidor Docker está acessível a partir da sua máquina local
-- Se ocorrerem erros de conexão, verifique se o firewall do servidor permite conexões na porta 3306
+```
+iniciar_bot.bat
+```
+
+## Observações de Segurança:
+
+- **O token do Telegram NÃO deve estar hardcoded no código fonte**
+- **A senha do banco de dados NÃO deve estar hardcoded no código fonte**
+- **Certifique-se de que seu arquivo .env.local está no .gitignore e NÃO será commitado**
+- **Nunca compartilhe valores de variáveis de ambiente em repositórios públicos**
+- **Certifique-se de que a porta 3306 no servidor Docker está acessível a partir da sua máquina local**
+- **Se ocorrerem erros de conexão, verifique se o firewall do servidor permite conexões na porta 3306**

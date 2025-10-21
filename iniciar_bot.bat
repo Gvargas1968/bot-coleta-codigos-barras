@@ -49,12 +49,21 @@ if not exist ".env.local" (
     exit /b 0
 )
 
-REM Verifica se o host foi configurado corretamente
+REM Verifica se as variáveis sensíveis foram configuradas
 findstr /C:"endereco_ip_do_servidor" ".env.local" >nul
 if not errorlevel 1 (
     echo [ERRO] Voce precisa atualizar o arquivo .env.local com o IP correto do servidor Docker.
     echo [ERRO] Substitua 'endereco_ip_do_servidor' pelo IP real do servidor.
     echo [INFO] Execute: notepad .env.local para editar o arquivo.
+    pause
+    exit /b 1
+)
+
+REM Verifica se o token do Telegram foi removido do .env.local (ou se está usando .env.local para configurações locais)
+findstr /C:"7843033735:AAH93o7O0DGb_aSwC33W_lSpkF5IQmqsL8o" ".env.local" >nul
+if not errorlevel 1 (
+    echo [ERRO] O token do bot está configurado no arquivo .env.local, o que pode ser um risco de segurança.
+    echo [INFO] Recomenda-se remover o token do arquivo .env.local e usá-lo apenas como variável de ambiente.
     pause
     exit /b 1
 )
