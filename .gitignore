@@ -1,0 +1,99 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite
+
+# Compiled files
+*.class
+*.o
+*.obj
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# Documentation
+docs/_build/
+
+# Jupyter Notebooks
+*.ipynb_checkpoints/
+
+# Distribution / packaging
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage/
+.coverage.* 
+htmlcov/
+.python-version
+.nox/
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage*
+
+# Temporary files
+*.tmp
+*.temp
+
+# Output of test runs
+.pytest_cache/
+.hypothesis/
+
+# Local configuration files that should not be committed
+config_local.py
+local_settings.py
+settings_local.py
