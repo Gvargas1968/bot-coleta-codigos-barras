@@ -170,10 +170,5 @@ MYSQL_DATABASE=nome_do_banco
 
 Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
 
-## Autores
-
-- Seu Nome - Desenvolvedor Principal
-
----
 
 Bot de Coleta de Códigos de Barras © 2025
