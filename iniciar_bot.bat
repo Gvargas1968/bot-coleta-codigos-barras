@@ -31,7 +31,6 @@ echo [OK] Arquivo de configuracao encontrado.
 REM Verifica se o arquivo .env.local existe
 if not exist ".env.local" (
     echo [AVISO] Arquivo '.env.local' nao encontrado. Criando arquivo padrao...
-    echo # Token do Telegram >> .env.local
     echo # IMPORTANTE: Configure seu proprio token do Telegram >> .env.local
     echo # TELEGRAM_TOKEN=seu_token_real_aqui >> .env.local
     echo. >> .env.local
@@ -60,11 +59,11 @@ if not errorlevel 1 (
     exit /b 1
 )
 
-REM Verifica se o token do Telegram foi removido do .env.local (ou se está usando .env.local para configurações locais)
-findstr /C:"7843033735:AAH93o7O0DGb_aSwC33W_lSpkF5IQmqsL8o" ".env.local" >nul
-if not errorlevel 1 (
-    echo [ERRO] O token do bot está configurado no arquivo .env.local, o que pode ser um risco de segurança.
-    echo [INFO] Recomenda-se remover o token do arquivo .env.local e usá-lo apenas como variável de ambiente.
+REM Verifica se o token do Telegram foi configurado
+findstr /R /C:"^TELEGRAM_TOKEN=.*" ".env.local" >nul
+if errorlevel 1 (
+    echo [AVISO] O token do Telegram nao foi configurado no arquivo .env.local
+    echo [INFO] Certifique-se de configurar TELEGRAM_TOKEN no arquivo .env.local
     pause
     exit /b 1
 )
